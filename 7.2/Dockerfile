@@ -1,9 +1,9 @@
-FROM alpine:3.8
+FROM alpine:3.9
 
 ARG BUILD_CORES
 
 ARG NGINX_VER=1.15.8
-ARG PHP_VER=7.2.14
+ARG PHP_VER=7.2.15
 ARG LIBICONV_VERSION=1.15
 
 LABEL description="nginx + php image based on Alpine" \
@@ -102,7 +102,7 @@ ARG CUSTOM_BUILD_PKGS=" \
     libxpm-dev \
     libedit-dev \
     libxml2-dev \
-    libressl-dev \
+    openssl-dev \
     libbz2 \
     sqlite-dev \
     imap-dev"
@@ -145,7 +145,7 @@ RUN NB_CORES=${BUILD_CORES-$(getconf _NPROCESSORS_CONF)} \
     curl \
     libedit \
     libxml2 \
-    libressl \
+    openssl \
     libwebp \
     gd \
     pcre \
