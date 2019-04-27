@@ -58,7 +58,8 @@ ARG PHP_CONF=" \
     --with-freetype-dir \
     --enable-gd-native-ttf \
     --disable-gd-jis-conv \
-    --with-zlib"
+    --with-zlib \
+    --with-password-argon2"
 
 ARG PHP_EXT_LIST=" \
     mysqli \
@@ -105,7 +106,9 @@ ARG CUSTOM_BUILD_PKGS=" \
     openssl-dev \
     libbz2 \
     sqlite-dev \
-    imap-dev"
+    imap-dev \
+    argon2-libs \
+    argon2-dev"
 
 ARG CUSTOM_PKGS=" \
     freetype \
