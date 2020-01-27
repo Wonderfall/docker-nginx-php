@@ -1,10 +1,10 @@
-FROM alpine:3.9
+FROM alpine:3.11
 
 ARG BUILD_CORES
 
-ARG NGINX_VER=1.15.9
-ARG PHP_VER=7.2.16
-ARG LIBICONV_VERSION=1.15
+ARG NGINX_VER=1.17.8
+ARG PHP_VER=7.3.14
+ARG LIBICONV_VERSION=1.16
 
 LABEL description="nginx + php image based on Alpine" \
       maintainer="Wonderfall <wonderfall@targaryen.house>" \
@@ -133,6 +133,7 @@ RUN NB_CORES=${BUILD_CORES-$(getconf _NPROCESSORS_CONF)} \
     gcc \
     g++ \
     libc-dev \
+    libzip-dev \
     make \
     pkgconf \
     curl-dev \
@@ -147,6 +148,7 @@ RUN NB_CORES=${BUILD_CORES-$(getconf _NPROCESSORS_CONF)} \
     libxml2 \
     openssl \
     libwebp \
+    libzip \
     gd \
     pcre \
     zlib \
