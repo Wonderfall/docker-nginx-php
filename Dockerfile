@@ -1,9 +1,9 @@
-FROM alpine:3.11
+FROM alpine:3.12
 
 ARG BUILD_CORES
 
-ARG NGINX_VER=1.18.0
-ARG PHP_VER=7.3.18
+ARG NGINX_VER=1.19.0
+ARG PHP_VER=7.4.6
 ARG LIBICONV_VERSION=1.16
 
 LABEL description="nginx + php image based on Alpine" \
@@ -50,14 +50,14 @@ ARG PHP_CONF=" \
     --with-libedit \
     --with-openssl \
     --with-iconv=/usr/local \
-    --with-gd \
-    --with-jpeg-dir \
-    --with-png-dir \
+    --enable-gd \
+    --with-freetype \
+    --with-jpeg \
     --with-webp-dir \
     --with-xpm-dir=no \
-    --with-freetype-dir \
     --enable-gd-native-ttf \
     --disable-gd-jis-conv \
+    --enable-bcmath \
     --with-zlib"
 
 ARG PHP_EXT_LIST=" \
@@ -138,6 +138,7 @@ RUN NB_CORES=${BUILD_CORES-$(getconf _NPROCESSORS_CONF)} \
     pkgconf \
     curl-dev \
     ca-certificates \
+    oniguruma-dev \
     ${CUSTOM_BUILD_PKGS}" \
  && apk -U add \
     ${BUILD_DEPS} \
@@ -146,9 +147,11 @@ RUN NB_CORES=${BUILD_CORES-$(getconf _NPROCESSORS_CONF)} \
     curl \
     libedit \
     libxml2 \
+    oniguruma \
     openssl \
     libwebp \
     libzip \
+    sqlite-libs \
     gd \
     pcre \
     zlib \
